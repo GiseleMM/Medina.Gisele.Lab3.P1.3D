@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./CSS/estilos.css">
+    <script src="./JS/index.js" type="module"></script>
+    <!-- PARA ICONOS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- ICONOS
+    <i class="fa-solid fa-check" style="color: #040c04;"></i>  cheket
+    <i class="fa-brands fa-github"></i>                        github
+    <i class="fa-solid fa-xmark"></i>                              cruz
+    <i class="fa-solid fa-bath"></i>                            banio
+    <i class="fa-solid fa-spinner fa-spin"></i>             spiner ginardo
+    <i class="fa-regular fa-moon"></i>                      luna
+    <i class="fa-solid fa-trash-can"></i>                       tacho de basura
+    <i class="fa-solid fa-circle-arrow-right"></i>              play
+    <i class="fa-solid fa-circle-arrow-left"></i>               <
+     <i class="fa-solid fa-car-rear"></i>               auto
+     <i class="fa-solid fa-house-chimney-window fa-flip"></i>   casa GIRANDO
+     <i class="fa-solid fa-house-chimney-window"></i>          casa sin girarr   
+<i class="fa-solid fa-people-roof"></i>                       caSA CON PERSONAS 
+<i class="fa-solid fa-dollar-sign"></i>    DOLAR
+
+    -->
+
+    <title>Document</title>
+</head>
+
+<body>
+    <header></header>
+    <main>
+<!-- subtitulo dinamico  -->
+       <div id="subtitulo"></div>
+
+        <form action="">
+            <legend>Informacion del Anuncio</legend>
+            <input type="text" name="txtTitulo" placeholder="titulo" title="titulo">
+            <fieldset>
+                <legend>transaccion</legend>
+<!-- COLOCAR REQUIRED Y TODO LO DEMAS -->
+                <input type="radio" name="rdoTransaccion" value="VENTA" checked>VENTA
+                <input type="radio" name="rdoTransaccion" value="ALQUILER">ALQUILER
+            </fieldset>
+            <input type="text" name="txtDescripcion" placeholder="Descripcion" title="max 255 caracteres"
+                maxlength="255">
+            <input type="text" name="txtPrecio" placeholder="precio" title="valor numerico">
+            <input type="number" name="txtBaños" placeholder="baños" min="0" max="50" title="cantidad de baños">
+            <input type="number" name="txtEstacionamientos" placeholder="autos" min="0" max="50" title="cantidad de autos">
+
+            <input type="number" name="txtDormitorios" placeholder="dormitorios" min="0" max="50" title="cantidada de dormitorios">
+  <!-- DEBEN ESTAR OCULTOS SPINER ELIMINAR Y CANCELAR -->
+            <div id="spinner" class="none">
+                <i class="fa-solid fa-spinner fa-spin"></i>  
+            </div>
+            <dialog>
+                <span id="span-mensaje">  </span> 
+            </dialog>
+            
+            <input type="button" value="ELIMINAR" name="btnEliminar" class="none">
+            <input type="button" value="CANCELAR" name="btnCancelar" class="none">
+                                  
+            <input type="hidden" name="txtHidden" value="">
+            <input type="submit" value="GUARDAR" name="alta-modificacion">
+            
+            
+        </form>
+        <section id="section-tabla"></section>
+    </main>
+    <footer></footer>
+</body>
+
+</html>

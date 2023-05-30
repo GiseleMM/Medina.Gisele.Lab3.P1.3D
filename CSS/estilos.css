@@ -1,0 +1,176 @@
+/*normalize*/
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+/* PALETA
+
+rgb(221, 221, 221)  BLNCO
+rgb(210, 233, 233)   verde tirando a blanco
+rgb(17, 60, 74)     verder
+rgb(38, 90, 92)    verde mas claro
+rgb(63, 123, 112)  verder ma claro
+
+
+*/
+
+
+
+
+html {
+  font-size: 70%;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/* botones  */
+.none {
+  display: none;
+}
+
+
+
+/* fondo */
+body{
+  background-image:linear-gradient(rgb(210, 233, 233),transparent);
+  width: 100%;
+  height: 100%;
+}
+main{
+  display: flex;
+  flex-direction:row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* subtitulo dinamico */
+.subtitulo-dinamico {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+
+}
+#subtitulo{
+  width: 100%;
+}
+.subtitulo-dinamico>li {
+  font-weight: 900;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 10px 10px 10px rgba(59, 82, 72, 0.425);
+  transition: transform 0.5s ease-in-out;
+
+}
+
+.subtitulo-dinamico>li:first-child() {
+  border-radius: 5px 0 0 5px;
+}
+
+.subtitulo-dinamico>li:last-child() {
+  border-radius: 0 5px 5px 0;
+}
+
+ul:hover li:nth-child(odd) {
+  transform: skewY(-15deg);
+}
+
+ul:hover li:nth-child(even) {
+  transform: skewY(15deg);
+}
+
+
+/* FOMULARIO           */
+form{
+  flex:40%;
+  margin:1rem;
+}
+input{
+  accent-color:rgb(17, 60, 74) ;;
+  display: block;
+  background-color:transparent ;
+  padding:1rem;
+  border:none;
+  color: rgb(17, 60, 74) ;
+  font-family: inherit;
+  width: 100%;
+  text-align: center;
+  /* text-transform: uppercase; */
+}
+input::placeholder{
+  text-transform: uppercase;
+}
+input:out-of-range{
+  font-size: larger;
+  text-shadow: 1px 0px 1px rgb(17, 60, 74);
+color: rgb(223, 46, 56);
+}
+
+fieldset{
+  border:none;
+  padding:1rem;
+  background-color: rgba(164, 188, 146, 0.486);
+  text-align: center;
+}
+fieldset:hover{
+  background-color: rgb(210, 233, 233);
+}
+input:hover{
+  background-color:  rgba(164, 188, 146, 0.486);
+}
+
+/*SPINNER*/
+
+/*dialog  */
+dialog{
+  border:none;
+  border-radius: 10%;
+  padding: 1rem;
+  color:  rgb(17, 60, 74) ;
+
+}
+
+/* tabla */
+#section-tabla{
+  flex:60%;
+  padding: 0.5rem;
+  margin:0.5rem;
+
+
+}
+td{
+  border-bottom:thin solid rgba(164, 188, 146, 0.486) ;
+  text-align: right;
+  padding: 0 10px;;
+}
+th::first-letter{
+  text-transform: uppercase;
+}
+th{
+  height: 30px;
+}
+tr:hover{
+  background:rgba(164, 188, 146, 0.486);
+}
+/*mayor a tam movil */
+@media screen and (width>600px) {
+  html {
+    font-size: 100%;
+  }
+
+}
