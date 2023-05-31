@@ -179,3 +179,4 @@ export  const lista= [{
     "num_estacionamientos": 10,
     "num_dormitorios": 10
 }];
+export const armas=["armadura","espada","martillo","escudo","arma de fuego", "flechas" ];

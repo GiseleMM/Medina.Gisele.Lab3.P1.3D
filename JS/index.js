@@ -1,30 +1,30 @@
-import { lista } from "./data.js";
+import { lista ,armas} from "./data.js";
 import { crearSubtitulo,eliminarSubtitulo } from "./subtitulo.js"
 import { crearTabla, eliminarTabla } from "./tabla.js";
 import { camposVacios, cantidadCaracteresInvalida, precioFueraRango, cantidadInvalidasEnteras } from "./validaciones.js";
-import { modoModificar, mostrarMensaje, mostrarSpinner, ocultarSpinner, resetFormulario, cargarFormulario,agregarValidaciones } from "./formulario.js";
-import { Anuncio } from "./Anuncio.js";
+import { modoModificar, mostrarMensaje, mostrarSpinner, cargarSelect, resetFormulario, cargarFormulario,agregarValidaciones } from "./formulario.js";
+import {traerDatos,actualizarLocalStorage} from "./localStorage.js"
+import { SuperHeroe } from "./SuperHeroe.js";
+
 
 //OBTENGO LISTA
-console.log(lista);
+console.log(lista,armas);
 
 // //DEBO GUARDARLA EN EL LOCAL STORAGE
 // localStorage.setItem("entidad",JSON.stringify(lista));
+//localStorage.setItem("armas",JSON.stringify(armas));
 
-
-
-const listaLS = localStorage.getItem("entidad") ?
-    JSON.parse(localStorage.getItem("entidad"))
+const listaLS = localStorage.getItem("super") ?
+    JSON.parse(localStorage.getItem("super"))
     : [];
-
-// const copia=localStorage.getItem("entidad")?
-// JSON.parse(localStorage.getItem("entidad"))
-// :[];
-
-
+console.log(listaLS);
+//CREO VALOR DE SPAN
+const fecha=new Date().getFullYear();
+document.getElementById("span-footer-fecha").textContent=fecha.toString();
 
 //CREO SUBTITULO Y LO AGREGO AL DOM
-document.getElementById("subtitulo").appendChild(crearSubtitulo("Llena el formulario de alta"));
+document.getElementById("subtitulo").appendChild(crearSubtitulo("SUPER HEROES"));
+cargarSelect(traerDatos("armas"));
 
 //CREO TABLA Y LO AGREGO AL DOM
 document.querySelector("#section-tabla").appendChild(crearTabla(listaLS));
@@ -35,7 +35,7 @@ agregarValidaciones();
 
 //ME TRAIGO LOS ELEMENTOS DEL FORM
 const $formulario = document.forms[0];
-const { txtTitulo, rdoTransaccion, txtDescripcion, txtPrecio, txtBaños, txtEstacionamientos, txtDormitorios, txtHidden } = $formulario;
+const { txtNombre, rdoEditorial, txtAlias, rangeFuerza, selecArmas, txtHidden } = $formulario;
 
 
 
@@ -57,7 +57,7 @@ $formulario.addEventListener("submit", e => {
 
        //VALIDO --------------------------------------------- 
         let errores = [];
-        for (const input of [txtTitulo, txtDescripcion, txtPrecio, txtBaños, txtEstacionamientos, txtDormitorios]) {
+        for (const input of [txtNombre, txtAlias]) {
 
             if (camposVacios(input)) {
 
@@ -66,15 +66,9 @@ $formulario.addEventListener("submit", e => {
             }
 
         };
-        if(cantidadCaracteresInvalida(255,txtDescripcion))errores.push("no debe superar los 255 caracteres")
+        if(cantidadCaracteresInvalida(255,txtNombre))errores.push("no debe superar los 255 caracteres")
 
-        if(precioFueraRango(txtPrecio,0,10000000))errores.push("precio fuera de rango");
-
-        if(cantidadInvalidasEnteras(txtBaños,0,30))errores.push("num de  baños invalido");
-
-        if(cantidadInvalidasEnteras(txtEstacionamientos,0,30))errores.push("num de estacionamientos invalido");
-        
-        if(cantidadInvalidasEnteras(txtDormitorios,0,30))errores.push("num de dormitorios invalido");
+        if(precioFueraRango(rangeFuerza,0,51))errores.push("fuerza de rango");
 
       
         if (errores.length > 0) {
@@ -88,7 +82,9 @@ $formulario.addEventListener("submit", e => {
             if (txtHidden.value.trim() == "") {
                 //ALTA
                 let id = Date.now();
-                const nuevo = new Anuncio(id, txtTitulo.value, rdoTransaccion.value, txtDescripcion.value, txtPrecio.value, txtBaños.value, txtEstacionamientos.value, txtDormitorios.value);
+              
+                const nuevo = new SuperHeroe(id, txtNombre.value,rangeFuerza.value,txtAlias.value,rdoEditorial.value,selecArmas.value);
+                
                 altaEntidad(nuevo);
                 
                 resetFormulario();
@@ -96,8 +92,8 @@ $formulario.addEventListener("submit", e => {
             }
             else {
                 //MODIFICACION
-
-                const datoModificado = new Anuncio(txtHidden.value, txtTitulo.value, rdoTransaccion.value, txtDescripcion.value, txtPrecio.value, txtBaños.value, txtEstacionamientos.value, txtDormitorios.value);
+              
+                const datoModificado= new SuperHeroe(txtHidden.value, txtNombre.value,rangeFuerza.value,txtAlias.value,rdoEditorial.value,selecArmas.value);
                 modificarEntidad(datoModificado);
                 resetFormulario();
             }
@@ -121,7 +117,7 @@ $formulario.addEventListener("submit", e => {
 //CRUD 
 function altaEntidad(nuevoDato) {
     listaLS.push(nuevoDato);
-    actualizarLocalStorage("entidad", listaLS);
+    actualizarLocalStorage("super", listaLS);
     actualizarTabla(listaLS);
 
 }
@@ -139,15 +135,13 @@ function eliminarEntidad(id) {
     let indice = listaLS.findIndex(d => d.id == id);
     if (indice != -1) {
         listaLS.splice(indice, 1);
-        actualizarLocalStorage("entidad", listaLS);
+        actualizarLocalStorage("super", listaLS);
         actualizarTabla(listaLS);
 
     }
 }
 
-function actualizarLocalStorage(clave, valor) {
-    localStorage.setItem(clave, JSON.stringify(valor));
-}
+
 function actualizarTabla(lista) {
     const tabla = document.querySelector("#section-tabla table");
     eliminarTabla(tabla);
@@ -165,51 +159,21 @@ function actualizarSubtitulo(texto){
 
 
 ///ORDENAMIENTO-----------------------------------------------------------------------------------
-function ordenarDatosPorId() {
 
 
-    return ordenarDatosPorNumericos("id");
-}
-function ordenarDatosPorEstacionamiento() {
-    return ordenarDatosPorNumericos("num_estacionamientos");
-}
-function ordenarDatosPorBaños() {
-    return ordenarDatosPorNumericos("num_baños");
-}
-function ordenarDatosPorDormitorios() {
-    return ordenarDatosPorNumericos("num_dormitorios");
-}
-function ordenarDatosPorPrecio() {
-    const copia = [...listaLS];
-    return copia.sort((a, b) => {
-        let a1 = a.precio;
-        if (a.precio.startsWith("$")) {
-            a1 = a.precio.slice(1);
-        }
-        a1 = parseFloat(a1);
-        let b1 = b.precio;
-        if (b.precio.startsWith("$")) {
-            b1 = b.precio.slice(1);
-        }
-        b1 = parseFloat(b1);
-        return a1 - b1;
-    });
-
-
-}
 function ordenarDatosPorNumericos(criterio) {
     const copia = [...listaLS];
     return copia.sort((a, b) => a[criterio] - b[criterio]);
 
 }
-function ordenarDatosPorTitulo() {
-    return ordenarDatosPorString("titulo");
+function ordenarDatosPorNombre() {
+    return ordenarDatosPorString("nombre");
 }
-function ordenarDatosPorDescripcion() {
-    return ordenarDatosPorString("descripcion");
+function ordenarDatosPorAlias() {
+    return ordenarDatosPorString("alias");
 }
-function ordenarDatosPorTransaccion() {
-    return ordenarDatosPorString("transaccion");
+function ordenarDatosPorArmas() {
+    return ordenarDatosPorString("armas");
 }
 function ordenarDatosPorString(criterio) {
     const copia = [...lista];
@@ -224,7 +188,7 @@ document.addEventListener("click", event => {
         let id = emisor.parentElement.dataset.id;
         let seleccionado = listaLS.find(item => item.id == id);
         console.log(seleccionado);
-        cargarFormulario(seleccionado.titulo, seleccionado.transaccion, seleccionado.descripcion, seleccionado.precio, seleccionado["num_baños"], seleccionado["num_estacionamientos"], seleccionado["num_dormitorios"], seleccionado.id);
+        cargarFormulario(seleccionado);
         modoModificar();
         actualizarSubtitulo("Modificacion");
 
@@ -244,29 +208,29 @@ document.addEventListener("click", event => {
         console.log(emisor);
         alert(emisor.textContent);
         switch (emisor.textContent) {
-            case "titulo":
-                actualizarTabla(ordenarDatosPorTitulo());
+            case "nombre":
+                actualizarTabla(ordenarDatosPorNombre());
 
                 break;
-            case "descripcion":
-                actualizarTabla(ordenarDatosPorDescripcion());
+            case "alias":
+                actualizarTabla(ordenarDatosPorAlias());
                 break;
-            case "transaccion":
-                actualizarTabla(ordenarDatosPorTransaccion());
+            case "armas":
+                actualizarTabla(ordenarDatosPorArmas());
                 break;
             case "precio":
                 actualizarTabla(ordenarDatosPorPrecio());
                 break;
 
-            case "num_baños":
-                actualizarTabla(ordenarDatosPorBaños());
-                break;
-            case "num_estacionamiento":
-                actualizarTabla(ordenarDatosPorEstacionamiento());
-                break;
-            case "num_dormitorios":
-                actualizarTabla(ordenarDatosPorDormitorios());
-                break;
+            // case "num_baños":
+            //     actualizarTabla(ordenarDatosPorBaños());
+            //     break;
+            // case "num_estacionamiento":
+            //     actualizarTabla(ordenarDatosPorEstacionamiento());
+            //     break;
+            // case "num_dormitorios":
+            //     actualizarTabla(ordenarDatosPorDormitorios());
+            //     break;
 
             default:
                 break;

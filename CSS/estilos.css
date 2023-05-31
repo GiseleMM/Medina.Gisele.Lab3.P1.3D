@@ -1,7 +1,12 @@
 /*normalize*/
-*{
-  margin:0;
-  padding:0;
+
+
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap');
+
+
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -21,7 +26,9 @@ rgb(63, 123, 112)  verder ma claro
 
 html {
   font-size: 70%;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  /* font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
+  font-family: 'Tilt Warp', cursive;
+  color: rgb(0, 223, 162);
 }
 
 /* botones  */
@@ -32,17 +39,21 @@ html {
 
 
 /* fondo */
-body{
-  background-image:linear-gradient(rgb(210, 233, 233),transparent);
+body {
+  /* background-image:linear-gradient(rgb(255, 0, 96),transparent); */
+  background-color: rgb(255, 0, 96);
   width: 100%;
   height: 100%;
 }
-main{
+
+main {
   display: flex;
-  flex-direction:row;
+  flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+margin: 20px;
+
 }
 
 
@@ -63,114 +74,257 @@ main{
   justify-content: center;
 
 }
-#subtitulo{
+
+#subtitulo {
   width: 100%;
 }
+
 .subtitulo-dinamico>li {
-  font-weight: 900;
-  width: 60px;
-  height: 60px;
+  font-weight: 500;
+  width: 20px;
+  height: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 10px 10px 10px rgba(59, 82, 72, 0.425);
+  /* box-shadow:10px -10px 10px rgb(246, 250, 112); */
   transition: transform 0.5s ease-in-out;
 
 }
 
-.subtitulo-dinamico>li:first-child() {
-  border-radius: 5px 0 0 5px;
-}
 
-.subtitulo-dinamico>li:last-child() {
-  border-radius: 0 5px 5px 0;
-}
 
-ul:hover li:nth-child(odd) {
+
+
+.subtitulo-dinamico:hover li:nth-child(odd) {
   transform: skewY(-15deg);
 }
 
-ul:hover li:nth-child(even) {
+.subtitulo-dinamico:hover li:nth-child(even) {
   transform: skewY(15deg);
 }
 
 
 /* FOMULARIO           */
-form{
-  flex:40%;
-  margin:1rem;
+form {
+width: 80%;
+  flex: 40%;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  padding: 1rem;
+  box-shadow: 2em 1em gold;
+  backdrop-filter: blur(50px);
+  border-radius: 10px;
+  border: thin solid rgb(246, 250, 112);
 }
-input{
-  accent-color:rgb(17, 60, 74) ;;
+input {
+  border-radius: 10px;
+  accent-color: rgb(0, 223, 162);
+  ;
   display: block;
-  background-color:transparent ;
-  padding:1rem;
-  border:none;
-  color: rgb(17, 60, 74) ;
+  background: transparent;
+  padding: 1rem;
+  border: none;
+  color: rgb(0, 223, 162);
   font-family: inherit;
   width: 100%;
-  text-align: center;
+  text-align: start;
   /* text-transform: uppercase; */
 }
-input::placeholder{
+
+input::placeholder {
   text-transform: uppercase;
-}
-input:out-of-range{
-  font-size: larger;
-  text-shadow: 1px 0px 1px rgb(17, 60, 74);
-color: rgb(223, 46, 56);
+  color: rgb(0, 223, 162);
 }
 
-fieldset{
-  border:none;
-  padding:1rem;
-  background-color: rgba(164, 188, 146, 0.486);
+input:out-of-range {
+  font-size: larger;
+  text-shadow: 1px 0px 1px rgb(17, 60, 74);
+  color: rgb(223, 46, 56);
+}
+
+fieldset {
+  width: 100%;
+  border: none;
+  padding: 1rem;
+  background-color: rgba(223, 46, 56, 0.4);
+  text-align: start;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1px;
+}
+
+fieldset:hover {
+  background-color: rgb(0, 121, 255);
+}
+
+input:hover {
+  background-color: rgb(0, 121, 255);
+}
+
+select {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  border-radius: 10px;
+  color: rgb(0, 223, 162);
+}
+
+select>option {
+  background-color: rgb(255, 0, 96);
+  border: none;
+  border-radius: 10px;
+  color: rgb(0, 223, 162);
+}
+
+select>option:focus {
+  background-color: transparent;
+  border: none;
+  border-radius: 10px;
+  background-color: rgb(0, 121, 255);
+}
+
+form>button {
+  background-color: rgb(0, 121, 255);
+  color: rgb(246, 250, 112);
+  padding: 1rem;
+  margin: 1rem;
   text-align: center;
 }
-fieldset:hover{
-  background-color: rgb(210, 233, 233);
-}
-input:hover{
-  background-color:  rgba(164, 188, 146, 0.486);
+input[type="button"]{
+  background-color: rgb(0, 121, 255);
+  color: rgb(246, 250, 112);
+  padding: 1rem;
+  margin: 1rem;
+  text-align: center;
 }
 
 /*SPINNER*/
+#spinner i{
+  width:90vw;
+  height: 50px;
+}
 
 /*dialog  */
-dialog{
-  border:none;
+dialog {
+  border: none;
   border-radius: 10%;
   padding: 1rem;
-  color:  rgb(17, 60, 74) ;
+  background-color: rgb(246, 250, 112);
+  color: rgb(0, 121, 255);
 
 }
 
 /* tabla */
-#section-tabla{
-  flex:60%;
+#section-tabla {
+  flex: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 0.5rem;
-  margin:0.5rem;
+  margin: 0.5rem;
+  width: max-content;
 
 
 }
-td{
-  border-bottom:thin solid rgba(164, 188, 146, 0.486) ;
+
+td {
+  border-bottom: thin solid rgb(0, 223, 162);
   text-align: right;
-  padding: 0 10px;;
+  padding: 0 10px;
+  ;
 }
-th::first-letter{
+
+th::first-letter {
   text-transform: uppercase;
 }
-th{
+
+#section-tabla>table>thead>tr {
   height: 30px;
+  background-color: rgb(0, 223, 162);
+  color: rgb(255, 0, 96);
+  border: 2px solid rgb(0, 223, 162);
+  margin: 0;
+  padding: 0;
+
 }
-tr:hover{
-  background:rgba(164, 188, 146, 0.486);
+
+tr:hover {
+  background: rgba(164, 188, 146, 0.486);
 }
+
+#header-nav {
+  background-color: rgb(0, 121, 255) ;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+#header-nav img{
+  width: 100px;
+  height: auto;
+}
+#lista-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: end;
+  list-style: none;
+  gap:1rem;
+
+
+}
+
+#lista-header>li>a {
+  text-decoration: none;
+  text-transform: capitalize;
+
+}
+
+footer {
+  background-color: rgb(0, 121, 255) ;
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+  padding: 2rem;
+  
+  
+
+}
+
+/*footer*/
+#lista-footer{
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: end;
+  list-style: none;
+gap:1rem;
+
+}
+
+
+#lista-footer>li>a {
+  text-decoration: none;
+  text-transform: capitalize;
+
+}
+
 /*mayor a tam movil */
 @media screen and (width>600px) {
   html {
     font-size: 100%;
+
+  }
+  #header-nav,footer{
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  #lista-header,#lista-footer{
+    flex-direction: row;
   }
 
 }

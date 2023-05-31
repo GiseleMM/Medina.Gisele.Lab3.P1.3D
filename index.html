@@ -15,64 +15,92 @@
     <i class="fa-solid fa-check" style="color: #040c04;"></i>  cheket
     <i class="fa-brands fa-github"></i>                        github
     <i class="fa-solid fa-xmark"></i>                              cruz
-    <i class="fa-solid fa-bath"></i>                            banio
     <i class="fa-solid fa-spinner fa-spin"></i>             spiner ginardo
     <i class="fa-regular fa-moon"></i>                      luna
     <i class="fa-solid fa-trash-can"></i>                       tacho de basura
     <i class="fa-solid fa-circle-arrow-right"></i>              play
     <i class="fa-solid fa-circle-arrow-left"></i>               <
-     <i class="fa-solid fa-car-rear"></i>               auto
-     <i class="fa-solid fa-house-chimney-window fa-flip"></i>   casa GIRANDO
-     <i class="fa-solid fa-house-chimney-window"></i>          casa sin girarr   
-<i class="fa-solid fa-people-roof"></i>                       caSA CON PERSONAS 
+    <i class="fa-solid fa-mask"></i>                           mascara        
 <i class="fa-solid fa-dollar-sign"></i>    DOLAR
-
+<i class="fa-solid fa-robot"></i>                           ROBOT
+<i class="fa-solid fa-heart-pulse"></i>                     corazon 
+<i class="fa-regular fa-user"></i>                      USER
     -->
 
-    <title>Document</title>
+    <title>SuperHEROES</title>
 </head>
 
 <body>
-    <header></header>
+    <header>
+        <nav id="header-nav">
+            <img src="./img/1380756_comic_hero_superhero_wolverine_icon.png" alt="LOGO">
+            <ul id="lista-header">
+                <li><a href="#">Home </a></li>
+                <li><a href="#">Personajes</a></li>
+                <li><a href="#">Blog</a></li>
+
+                <li><a href="#">contacto</a></li>
+            </ul>
+        </nav>
+    </header>
     <main>
-<!-- subtitulo dinamico  -->
-       <div id="subtitulo"></div>
+        <!-- subtitulo dinamico  -->
+        <div id="subtitulo"></div>
 
         <form action="">
-            <legend>Informacion del Anuncio</legend>
-            <input type="text" name="txtTitulo" placeholder="titulo" title="titulo">
-            <fieldset>
-                <legend>transaccion</legend>
-<!-- COLOCAR REQUIRED Y TODO LO DEMAS -->
-                <input type="radio" name="rdoTransaccion" value="VENTA" checked>VENTA
-                <input type="radio" name="rdoTransaccion" value="ALQUILER">ALQUILER
-            </fieldset>
-            <input type="text" name="txtDescripcion" placeholder="Descripcion" title="max 255 caracteres"
-                maxlength="255">
-            <input type="text" name="txtPrecio" placeholder="precio" title="valor numerico">
-            <input type="number" name="txtBaños" placeholder="baños" min="0" max="50" title="cantidad de baños">
-            <input type="number" name="txtEstacionamientos" placeholder="autos" min="0" max="50" title="cantidad de autos">
+            <legend>Informacion del Super Heroe</legend>
 
-            <input type="number" name="txtDormitorios" placeholder="dormitorios" min="0" max="50" title="cantidada de dormitorios">
-  <!-- DEBEN ESTAR OCULTOS SPINER ELIMINAR Y CANCELAR -->
+
+            <label for="nombre"> <i class="fa-regular fa-user"></i>&nbsp; Nombre</label>
+            <input type="text" name="txtNombre" placeholder="nombre" title="nombre" id="nombre">
+
+
+            <label for="alias"> <i class="fa-solid fa-mask"></i>&nbsp; Alias </label>
+            <input type="text" name="txtAlias" placeholder="Alias" title="max 255 caracteres" maxlength="255"
+                id="alias">
+            <fieldset>
+                <legend>Editorial</legend>
+                <!-- COLOCAR REQUIRED Y TODO LO DEMAS -->
+                <input type="radio" name="rdoEditorial" value="MARVEL" checked>MARVEL
+                <input type="radio" name="rdoEditorial" value="DC">DC
+            </fieldset>
+            <label for="fuerza"><i class="fa-solid fa-heart-pulse"></i> &nbsp; Fuerza</label>
+            <input type="range" name="rangeFuerza" placeholder="fuerza rango" min="0" max="50"
+                title="cantidad de fuerza">
+
+            <label for="arma"> <i class="fa-solid fa-robot"></i> &nbsp; Arma</label>
+            <select name="selecArmas" id="arma">
+
+            </select>
+            <!-- DEBEN ESTAR OCULTOS SPINER ELIMINAR Y CANCELAR -->
             <div id="spinner" class="none">
-                <i class="fa-solid fa-spinner fa-spin"></i>  
+                <i class="fa-solid fa-dragon fa-flip"></i>
             </div>
             <dialog>
-                <span id="span-mensaje">  </span> 
+                <span id="span-mensaje"> </span>
             </dialog>
-            
+
             <input type="button" value="ELIMINAR" name="btnEliminar" class="none">
             <input type="button" value="CANCELAR" name="btnCancelar" class="none">
-                                  
+
             <input type="hidden" name="txtHidden" value="">
-            <input type="submit" value="GUARDAR" name="alta-modificacion">
-            
-            
+            <button type="submit" value="GUARDAR" name="alta-modificacion"><i
+                    class="fa-solid fa-floppy-disk"></i>GUARDAR</button>
+
+
         </form>
         <section id="section-tabla"></section>
     </main>
-    <footer></footer>
+    <footer>
+
+        <ul id="lista-footer">
+            <li><a href="#">Home </a></li>
+            <li><a href="#">Personajes</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">contacto</a></li>
+        </ul>
+        <p>Laboratorio III Todos los derechos reservados<span id="span-footer-fecha"></span>&copy;</p>
+    </footer>
 </body>
 
 </html>
