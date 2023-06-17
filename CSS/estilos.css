@@ -112,6 +112,11 @@ width: 80%;
   flex-direction: column;
   margin: 1rem;
   padding: 1rem;
+  background-image: url("../img/spiderman-gd3c7c6227_640.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: top right;
+
   box-shadow: 2em 1em gold;
   backdrop-filter: blur(50px);
   border-radius: 10px;
@@ -152,7 +157,9 @@ fieldset {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 1px;
+}
+fieldset>input{
+  width:25%;
 }
 
 fieldset:hover {
@@ -202,17 +209,29 @@ input[type="button"]{
 
 /*SPINNER*/
 #spinner i{
-  width:90vw;
+  font-size: 3rem;
+  width:50%;
   height: 50px;
 }
 
 /*dialog  */
 dialog {
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin:auto;
   border: none;
   border-radius: 10%;
   padding: 1rem;
-  background-color: rgb(246, 250, 112);
+  width: 70vw;
+  height: 20vh;
+  background-color:gold;
+  backdrop-filter: blur(100px);
   color: rgb(0, 121, 255);
+  text-transform: uppercase;
+  text-align: center;
 
 }
 
@@ -255,6 +274,8 @@ tr:hover {
 }
 
 #header-nav {
+
+  width: 100vw;
   background-color: rgb(0, 121, 255) ;
   display: flex;
   flex-direction: column;
@@ -313,6 +334,34 @@ gap:1rem;
 
 }
 
+
+/*pagina principal modificaciones*/
+#main-index{
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../img/spiderman-gd3c7c6227_640.png");
+  background-attachment: fixed;
+  background-position: 0%;
+}
+#container-card{
+  display: flex;
+  flex-wrap: wrap;
+  gap:3rem;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-transform: capitalize;
+
+}
+#container-card article{
+  backdrop-filter: blur(25px);
+padding: 2rem;
+border-radius: 10%;  
+box-shadow: 0.2em 0.2em 5px gold;
+}
+#container-card article>ul{
+  list-style: none;
+}
 /*mayor a tam movil */
 @media screen and (width>600px) {
   html {

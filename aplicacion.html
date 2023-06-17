@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./CSS/estilos.css">
+    <script src="./JS/index.js" type="module"></script>
+    <!-- PARA ICONOS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- ICONOS
+    <i class="fa-solid fa-check" style="color: #040c04;"></i>  cheket
+    <i class="fa-brands fa-github"></i>                        github
+    <i class="fa-solid fa-xmark"></i>                              cruz
+    <i class="fa-solid fa-spinner fa-spin"></i>             spiner ginardo
+    <i class="fa-regular fa-moon"></i>                      luna
+    <i class="fa-solid fa-trash-can"></i>                       tacho de basura
+    <i class="fa-solid fa-circle-arrow-right"></i>              play
+    <i class="fa-solid fa-circle-arrow-left"></i>               <
+    <i class="fa-solid fa-mask"></i>                           mascara        
+<i class="fa-solid fa-dollar-sign"></i>    DOLAR
+<i class="fa-solid fa-robot"></i>                           ROBOT
+<i class="fa-solid fa-heart-pulse"></i>                     corazon 
+<i class="fa-regular fa-user"></i>                      USER
+    -->
+
+    <title>SuperHEROES</title>
+</head>
+
+<body>
+    <header>
+        <nav id="header-nav">
+            <img src="./img/1380756_comic_hero_superhero_wolverine_icon.png" alt="LOGO">
+            <ul id="lista-header">
+                <li><a href="./index.html">Home </a></li>
+                <li><a href="#">Personajes</a></li>
+                <li><a href="#">Blog</a></li>
+
+                <li><a href="#">contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <!-- subtitulo dinamico  -->
+        <div id="subtitulo"></div>
+
+        <form action="">
+            <legend>Informacion del Super Heroe</legend>
+
+
+            <label for="nombre"> <i class="fa-regular fa-user"></i>&nbsp; Nombre</label>
+            <input type="text" name="txtNombre" placeholder="nombre" title="nombre" id="nombre">
+
+
+            <label for="alias"> <i class="fa-solid fa-mask"></i>&nbsp; Alias </label>
+            <input type="text" name="txtAlias" placeholder="Alias" title="max 255 caracteres" maxlength="255"
+                id="alias">
+            <fieldset>
+                <legend>Editorial</legend>
+                <!-- COLOCAR REQUIRED Y TODO LO DEMAS -->
+                <input type="radio" name="rdoEditorial" value="MARVEL" checked>MARVEL
+                <input type="radio" name="rdoEditorial" value="DC">DC
+            </fieldset>
+            <label for="fuerza"><i class="fa-solid fa-heart-pulse"></i> &nbsp; Fuerza</label>
+            <input type="range" name="rangeFuerza"  min="0" max="50"step="1"
+                title="cantidad de fuerza">
+<small id="fuerzaSmall"></small>
+            <label for="arma"> <i class="fa-solid fa-robot"></i> &nbsp; Arma</label>
+            <select name="selecArmas" id="arma">
+
+            </select>
+            <!-- DEBEN ESTAR OCULTOS SPINER ELIMINAR Y CANCELAR -->
+            <div id="spinner" class="none">
+                <i class="fa-solid fa-dragon fa-flip"></i>
+            </div>
+            <dialog>
+                <span id="span-mensaje"> </span>
+            </dialog>
+
+            <input type="button" value="ELIMINAR" name="btnEliminar" class="none">
+            <input type="button" value="CANCELAR" name="btnCancelar" class="none">
+
+            <input type="hidden" name="txtHidden" value="">
+            <button type="submit" value="GUARDAR" name="alta-modificacion"><i
+                    class="fa-solid fa-floppy-disk"></i>GUARDAR</button>
+
+
+        </form>
+        <section id="section-tabla"></section>
+    </main>
+    <footer>
+
+        <ul id="lista-footer">
+            <li><a href="#">Home </a></li>
+            <li><a href="#">Personajes</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">contacto</a></li>
+        </ul>
+        <p>Laboratorio III Todos los derechos reservados<span id="span-footer-fecha"></span>&copy;</p>
+    </footer>
+</body>
+
+</html>

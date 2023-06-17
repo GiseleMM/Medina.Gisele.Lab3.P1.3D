@@ -25,7 +25,8 @@ export function resetFormulario(){
 }
 export function mostrarMensaje(texto){
     const $span= document.getElementById("span-mensaje");
-    $span.innerHTML=texto;
+    $span.innerHTML= "&#10060";
+    $span.innerHTML+=texto;
     console.log($span.textContent);
     console.log($span.parentElement);
     

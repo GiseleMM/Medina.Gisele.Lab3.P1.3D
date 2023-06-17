@@ -72,6 +72,7 @@ $formulario.addEventListener("submit", e => {
 
       
         if (errores.length > 0) {
+            alert("estoy en errores");
             let mensaje = errores.join("&#10007;");//USO INNERHTML
             console.log(mensaje);
             mostrarMensaje(mensaje);
@@ -184,6 +185,11 @@ function ordenarDatosPorString(criterio) {
 //DELEGACION DE EVENTO ---------------------------------------------------------------------------------------------
 document.addEventListener("click", event => {
     let emisor = event.target;
+    if(emisor.matches("input[type='range']")){
+
+        let valor=emisor.value;
+        document.getElementById("fuerzaSmall").textContent="fuerza: "+valor;
+    }
     if (emisor.matches("td")) {
         let id = emisor.parentElement.dataset.id;
         let seleccionado = listaLS.find(item => item.id == id);
