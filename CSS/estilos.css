@@ -273,11 +273,13 @@ tr:hover {
   background: rgba(164, 188, 146, 0.486);
 }
 
+/* NAV HEADER  */
 #header-nav {
 
   width: 100vw;
   background-color: rgb(0, 121, 255) ;
   display: flex;
+  gap:2rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -293,6 +295,7 @@ tr:hover {
   justify-content: end;
   align-items: end;
   list-style: none;
+  margin-right: 1rem;
   gap:1rem;
 
 

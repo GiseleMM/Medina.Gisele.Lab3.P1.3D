@@ -34,7 +34,7 @@ export function mostrarMensaje(texto){
     setTimeout(() => {
         $span.parentElement.removeAttribute("open");
         resetFormulario();
-    }, 5000);
+    }, 4000);
 
 }
 export function modoModificar(){

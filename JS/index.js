@@ -1,4 +1,4 @@
-import { lista ,armas} from "./data.js";
+import { armas} from "./data.js";
 import { crearSubtitulo,eliminarSubtitulo } from "./subtitulo.js"
 import { crearTabla, eliminarTabla } from "./tabla.js";
 import { camposVacios, cantidadCaracteresInvalida, precioFueraRango, cantidadInvalidasEnteras } from "./validaciones.js";
@@ -7,30 +7,29 @@ import {traerDatos,actualizarLocalStorage} from "./localStorage.js"
 import { SuperHeroe } from "./SuperHeroe.js";
 
 
-//OBTENGO LISTA
-console.log(lista,armas);
 
 // //DEBO GUARDARLA EN EL LOCAL STORAGE
-// localStorage.setItem("entidad",JSON.stringify(lista));
-//localStorage.setItem("armas",JSON.stringify(armas));
+localStorage.setItem("armas",JSON.stringify(armas));
 
 const listaLS = localStorage.getItem("super") ?
     JSON.parse(localStorage.getItem("super"))
     : [];
 console.log(listaLS);
-//CREO VALOR DE SPAN
+//CREO VALOR DE SPAN PARA FOOTER
 const fecha=new Date().getFullYear();
 document.getElementById("span-footer-fecha").textContent=fecha.toString();
 
 //CREO SUBTITULO Y LO AGREGO AL DOM
 document.getElementById("subtitulo").appendChild(crearSubtitulo("SUPER HEROES"));
+
+//CARGO SELECT
 cargarSelect(traerDatos("armas"));
 
 //CREO TABLA Y LO AGREGO AL DOM
 document.querySelector("#section-tabla").appendChild(crearTabla(listaLS));
 
 
-//AGREGO LOS REQUERIMIENTOS DEL FORM
+//AGREGO LOS REQUERIMIENTOS DEL FORM y cheked y sleected
 agregarValidaciones();
 
 //ME TRAIGO LOS ELEMENTOS DEL FORM
@@ -42,14 +41,10 @@ const { txtNombre, rdoEditorial, txtAlias, rangeFuerza, selecArmas, txtHidden } 
 //AGREGO EL MANEJADOR AL EVENTO SUBMIT
 $formulario.addEventListener("submit", e => {
     e.preventDefault();
-    // console.log(document.getElementById("span-mensaje").textContent);
-    // document.getElementById("span-mensaje").textContent = "";
 
     // console.log(e.target);//FORM
     // console.log(e.type);//SUBMI
 
-
-    // document.querySelector("#spinner").classList.remove("none");
     mostrarSpinner();
 
     setTimeout(() => {
@@ -68,11 +63,11 @@ $formulario.addEventListener("submit", e => {
         };
         if(cantidadCaracteresInvalida(255,txtNombre))errores.push("no debe superar los 255 caracteres")
 
-        if(precioFueraRango(rangeFuerza,0,51))errores.push("fuerza de rango");
+        if(cantidadInvalidasEnteras(rangeFuerza,0,51))errores.push("fuerza de rango");
 
       
         if (errores.length > 0) {
-            alert("estoy en errores");
+         
             let mensaje = errores.join("&#10007;");//USO INNERHTML
             console.log(mensaje);
             mostrarMensaje(mensaje);
@@ -100,17 +95,7 @@ $formulario.addEventListener("submit", e => {
             }
         }
 
-
-
-
-
-  
-        // ocultarSpinner();
-        // resetFormulario();---> si lo coloco aca mostrar mnsaje falla por q tambien usa settimeout
     }, 3000);
-
-
-
 
 });
 
@@ -132,7 +117,7 @@ function modificarEntidad(dataModificado) {
     }
 }
 function eliminarEntidad(id) {
-    alert(id);
+    // alert(id);
     let indice = listaLS.findIndex(d => d.id == id);
     if (indice != -1) {
         listaLS.splice(indice, 1);
@@ -164,9 +149,19 @@ function actualizarSubtitulo(texto){
 
 function ordenarDatosPorNumericos(criterio) {
     const copia = [...listaLS];
-    return copia.sort((a, b) => a[criterio] - b[criterio]);
+     copia.sort((a, b) => a[criterio] - b[criterio]);
+    return copia;
 
 }
+function ordenarDatosPorString(criterio) {
+    const copia = [...listaLS];
+     copia.sort((a, b) =>{
+  
+        return a[criterio].localeCompare(b[criterio])
+     } );
+return copia;
+}
+
 function ordenarDatosPorNombre() {
     return ordenarDatosPorString("nombre");
 }
@@ -176,11 +171,12 @@ function ordenarDatosPorAlias() {
 function ordenarDatosPorArmas() {
     return ordenarDatosPorString("armas");
 }
-function ordenarDatosPorString(criterio) {
-    const copia = [...lista];
-    return copia.sort((a, b) => a[criterio].localeCompare(b[criterio]));
-
+function ordenarDatosPorFuerza(){
+return ordenarDatosPorNumericos("fuerza");
 }
+function ordenarDatosPorEditorial(){
+    return ordenarDatosPorNumericos("editorial");
+    }
 
 //DELEGACION DE EVENTO ---------------------------------------------------------------------------------------------
 document.addEventListener("click", event => {
@@ -212,7 +208,7 @@ document.addEventListener("click", event => {
     }
     if (emisor.matches("th")) {
         console.log(emisor);
-        alert(emisor.textContent);
+        // alert(emisor.textContent);
         switch (emisor.textContent) {
             case "nombre":
                 actualizarTabla(ordenarDatosPorNombre());
@@ -224,19 +220,11 @@ document.addEventListener("click", event => {
             case "armas":
                 actualizarTabla(ordenarDatosPorArmas());
                 break;
-            case "precio":
-                actualizarTabla(ordenarDatosPorPrecio());
+            case "fuerza":
+                actualizarTabla(ordenarDatosPorFuerza());
                 break;
-
-            // case "num_baños":
-            //     actualizarTabla(ordenarDatosPorBaños());
-            //     break;
-            // case "num_estacionamiento":
-            //     actualizarTabla(ordenarDatosPorEstacionamiento());
-            //     break;
-            // case "num_dormitorios":
-            //     actualizarTabla(ordenarDatosPorDormitorios());
-            //     break;
+                case "editorial":
+                    actualizarTabla(ordenarDatosPorEditorial());
 
             default:
                 break;

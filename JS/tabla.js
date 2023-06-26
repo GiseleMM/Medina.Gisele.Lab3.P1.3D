@@ -4,11 +4,11 @@ export function crearTabla(array){
     if(Array.isArray(array) && (array.length>0)){
 
         const claves=Object.keys(array[0]);
-        console.log(claves);
+        
         $tabla.appendChild(crearTHead(claves));
         $tabla.appendChild(crearTBody(array));
     }
-    console.log($tabla);
+
     return $tabla;
 }
 function crearTBody(array){
